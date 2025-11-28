@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Portfolio of Satoru Suzuki - Digital Venture Owner, Developer, and Strategist.">
 <title>Satoru Suzuki | Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -14,7 +15,7 @@
   --panel: #0f1113;
   --muted: #889096;
   --accent: #ff00d1;
-  --accent-glow: rgba(255,0,209,0.25);
+  --accent-glow: rgba(255,0,209,0.35);
   --glass: rgba(255,255,255,0.05);
   --border: rgba(255,255,255,0.08);
   --radius: 16px;
@@ -27,9 +28,18 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior: smooth; }
 
+/* 1. Breathing Background Animation */
+@keyframes neonPulse {
+  0% { background-position: 50% 0%; }
+  50% { background-position: 50% 15%; }
+  100% { background-position: 50% 0%; }
+}
+
 body { 
   background: var(--bg);
-  background-image: radial-gradient(circle at 50% 0%, #1a1018 0%, var(--bg) 70%);
+  background-image: radial-gradient(circle at 50% -20%, #2a0f25 0%, var(--bg) 60%);
+  background-size: 100% 120%;
+  animation: neonPulse 8s ease-in-out infinite;
   color: var(--muted); 
   font-family: var(--font-body); 
   overflow-x: hidden;
@@ -42,6 +52,7 @@ body {
   left: 0;
   height: 4px;
   background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
   width: 0%;
   z-index: 9999;
   transition: width 0.1s ease-out;
@@ -55,16 +66,18 @@ body {
   width: 100%;
   padding: 1rem 2rem;
   background: rgba(5, 5, 6, 0.85);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
-  z-index: 100;
+  z-index: 1000;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .nav-links {
   display: flex;
   gap: 2rem;
+  transition: 0.3s;
 }
 
 .nav-links a {
@@ -72,17 +85,27 @@ body {
   font-weight: 600;
   font-size: 0.9rem;
   opacity: 0.7;
+  position: relative;
 }
 
 .nav-links a:hover {
   opacity: 1;
   color: var(--accent);
+  text-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* Hamburger Menu Icon (Hidden on Desktop) */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #fff;
 }
 
 /* Scrollbar */
-::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: #333; border-radius: 5px; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
 ::selection { background: var(--accent); color: #fff; }
@@ -94,7 +117,7 @@ a { text-decoration: none; transition: 0.3s ease; }
 /* Scroll Animation Classes */
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(40px);
   transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
 }
 .reveal.active {
@@ -116,11 +139,29 @@ header img {
   height:160px; 
   border-radius:50%; 
   border:2px solid var(--accent); 
-  box-shadow: 0 0 30px var(--accent-glow);
+  box-shadow: 0 0 40px var(--accent-glow);
   object-fit: cover;
   transition: transform 0.4s ease;
+  animation: float 6s ease-in-out infinite;
 }
-header img:hover { transform: scale(1.05); box-shadow: 0 0 50px var(--accent-glow); }
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+header img:hover { transform: scale(1.05) rotate(2deg); box-shadow: 0 0 60px var(--accent-glow); }
+
+/* 4. Neon Flicker Effect */
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow: 0 0 5px var(--accent-glow), 0 0 10px var(--accent-glow);
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+    opacity: 0.6;
+  }
+}
 
 header h1 { 
   font-family: var(--font-head); 
@@ -129,6 +170,7 @@ header h1 {
   margin:1.5rem 0 0.5rem;
   letter-spacing: -2px;
   line-height: 1.1;
+  animation: flicker 4s infinite alternate;
 }
 header p { font-size:1.2rem; color: var(--muted); max-width: 600px; margin-top: 1rem; }
 
@@ -147,7 +189,7 @@ section { margin: 6rem 0; scroll-margin-top: 100px; }
 }
 .section-title::after {
   content:''; display:block; width: 60px; height: 3px; background: var(--accent);
-  margin: 10px auto 0; border-radius: 2px; box-shadow: 0 0 10px var(--accent);
+  margin: 10px auto 0; border-radius: 2px; box-shadow: 0 0 15px var(--accent);
 }
 
 /* Panels */
@@ -162,7 +204,7 @@ section { margin: 6rem 0; scroll-margin-top: 100px; }
 .panel:hover { 
   transform: translateY(-7px); 
   border-color: var(--accent);
-  box-shadow: 0 15px 30px var(--accent-glow);
+  box-shadow: 0 15px 40px var(--accent-glow);
 }
 
 /* About */
@@ -172,8 +214,9 @@ section { margin: 6rem 0; scroll-margin-top: 100px; }
   border-radius: var(--radius); 
   border:1px solid var(--border); 
   box-shadow:0 0 30px rgba(0,0,0,0.5);
+  cursor: pointer;
 }
-#about p { max-width:700px; }
+#about p { max-width:700px; line-height: 1.6; }
 
 /* Grid Systems */
 .grid { 
@@ -182,29 +225,47 @@ section { margin: 6rem 0; scroll-margin-top: 100px; }
   grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); 
 }
 
-/* Gallery Cards */
+/* 2. Enhanced Project Cards with Overlay */
 .project-card {
   padding: 0; 
   overflow: hidden; 
   position: relative;
-  cursor: pointer;
   height: 250px; 
+  group: hover;
 }
 .project-card img {
   width: 100%;
   height: 100%;
   object-fit: cover; 
-  transition: transform 0.5s ease;
+  transition: transform 0.6s ease;
   display: block;
 }
-.project-card:hover img { transform: scale(1.1); }
-.project-card::after {
-  content: '\f00e'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-  color: #fff; font-size: 1.5rem; opacity: 0; transition: 0.3s;
-  pointer-events: none; text-shadow: 0 0 10px #000;
+.project-card:hover img { transform: scale(1.15); filter: brightness(0.4); }
+
+.card-overlay {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  transition: bottom 0.4s ease-out;
+  pointer-events: none;
 }
-.project-card:hover::after { opacity: 1; }
+.project-card:hover .card-overlay { bottom: 0; }
+.card-overlay h3 { color: #fff; font-family: var(--font-head); margin-bottom: 0.3rem; }
+.card-overlay p { font-size: 0.85rem; color: var(--accent); font-weight: 600; }
+.card-overlay i {
+  position: absolute;
+  top: -30px; /* Moves icon up */
+  right: 20px;
+  color: #fff;
+  font-size: 1.2rem;
+  opacity: 0;
+  transition: 0.4s 0.1s;
+}
+.project-card:hover .card-overlay i { opacity: 1; transform: translateY(-10px); }
+
 
 /* Social Buttons */
 .social-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
@@ -225,24 +286,44 @@ section { margin: 6rem 0; scroll-margin-top: 100px; }
 /* Contact */
 #contact form { display:flex; flex-direction:column; gap:1.2rem; max-width:500px; margin:auto; }
 #contact input, #contact textarea { padding:1rem; border:1px solid var(--border); border-radius: var(--radius); background: var(--glass); color:#fff; outline:none; font-family: inherit; transition: 0.3s; width: 100%; }
-#contact input:focus, #contact textarea:focus { border-color: var(--accent); background: rgba(255,255,255,0.08); box-shadow: 0 0 15px var(--accent-glow); }
-#contact button { padding:1rem; border:none; border-radius: var(--radius); background: var(--accent); color:#000; font-weight:700; font-size: 1rem; cursor:pointer; transition:0.3s; box-shadow:0 0 15px var(--accent-glow); text-transform: uppercase; letter-spacing: 1px; }
-#contact button:hover { transform: translateY(-3px); background:#fff; color:var(--accent); box-shadow:0 0 25px var(--accent-glow); }
+#contact input:focus, #contact textarea:focus { border-color: var(--accent); background: rgba(255,255,255,0.08); box-shadow: 0 0 20px var(--accent-glow); }
+#contact button { padding:1rem; border:none; border-radius: var(--radius); background: var(--accent); color:#000; font-weight:700; font-size: 1rem; cursor:pointer; transition:0.3s; box-shadow:0 0 20px var(--accent-glow); text-transform: uppercase; letter-spacing: 1px; }
+#contact button:hover { transform: translateY(-3px); background:#fff; color:var(--accent); box-shadow:0 0 35px var(--accent-glow); }
 
 /* Footer */
 footer { text-align:center; color: var(--muted); padding:3rem 0; border-top:1px solid var(--border); margin-top:6rem; }
 
 /* Lightbox */
-#lightboxOverlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); backdrop-filter: blur(8px); display:none; align-items:center; justify-content:center; z-index:1000; opacity:0; transition: opacity 0.3s; }
-#lightboxOverlay.show { opacity: 1; display: flex; } /* FIX: Added display:flex to show it */
-#lightboxOverlay img { max-width:90%; max-height:85%; border-radius: var(--radius); box-shadow:0 0 40px var(--accent-glow); border: 1px solid var(--border); }
-#lightboxOverlay i { position: absolute; top: 30px; right: 30px; color: #fff; font-size: 2rem; cursor: pointer; }
+#lightboxOverlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); backdrop-filter: blur(10px); display:none; align-items:center; justify-content:center; z-index:2000; opacity:0; transition: opacity 0.3s; }
+#lightboxOverlay.show { opacity: 1; display: flex; }
+#lightboxOverlay img { max-width:90%; max-height:85%; border-radius: var(--radius); box-shadow:0 0 50px var(--accent-glow); border: 1px solid var(--border); }
+#lightboxOverlay i { position: absolute; top: 30px; right: 30px; color: #fff; font-size: 2rem; cursor: pointer; transition: 0.2s; }
+#lightboxOverlay i:hover { color: var(--accent); transform: scale(1.1); }
 
-/* Responsive */
+/* 3. Responsive / Mobile Menu */
 @media (max-width: 768px) {
-  .navbar { padding: 1rem; }
-  .nav-links { gap: 1rem; font-size: 0.8rem; }
-  header h1 { font-size: 2.2rem; }
+  .navbar { justify-content: space-between; padding: 1rem 1.5rem; }
+  .hamburger { display: block; z-index: 1001; }
+  
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
+    background: #0f1113;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .nav-links.active { right: 0; }
+  .nav-links a { font-size: 1.2rem; }
+  
+  header h1 { font-size: 2.5rem; }
   header p { padding: 0 1rem; }
   .section-title { font-size: 1.8rem; }
   .grid { grid-template-columns: 1fr; }
@@ -256,17 +337,21 @@ footer { text-align:center; color: var(--muted); padding:3rem 0; border-top:1px 
 <div id="scrollProgress"></div>
 
 <nav class="navbar">
+  <div class="logo" style="font-weight:700; color:#fff; font-family:var(--font-head); font-size:1.2rem;">SS.</div>
+  <div class="hamburger" onclick="toggleMenu()">
+    <i class="fa-solid fa-bars"></i>
+  </div>
   <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Gallery</a>
-    <a href="#socials">Socials</a>
-    <a href="#contact">Contact</a>
+    <a href="#about" onclick="toggleMenu()">About</a>
+    <a href="#skills" onclick="toggleMenu()">Skills</a>
+    <a href="#projects" onclick="toggleMenu()">Gallery</a>
+    <a href="#socials" onclick="toggleMenu()">Socials</a>
+    <a href="#contact" onclick="toggleMenu()">Contact</a>
   </div>
 </nav>
 
 <header class="reveal">
-  <img src="pfp.jpg" alt="Profile Picture">
+  <img src="pfp.jpg" alt="Profile Picture" loading="lazy">
   <h1>Hi, it's Satoru Suzuki</h1>
   <p>Welcome to my cyberpunk neon corner of the web. Discover my work, socials, and more.</p>
 </header>
@@ -275,28 +360,72 @@ footer { text-align:center; color: var(--muted); padding:3rem 0; border-top:1px 
   <section id="about" class="reveal">
     <div class="section-title">About Me</div>
     <div class="panel" style="padding:0; overflow:hidden; border:none; box-shadow:none;">
-      <img class="lightbox" src="fullme.jpg" alt="Full Me" style="width:100%; max-width:400px; border-radius:16px; display:block;">
+      <img class="lightbox" src="fullme.jpg" alt="Full Me" loading="lazy">
     </div>
-    <p>I'm Satoru Suzuki. I create, I explore, and I dive deep into technology, projects, and digital spaces. I own BlackMargin and a few other digital ventures. This space is my personal digital identity.</p>
+    <p style="margin-top:1.5rem;">I'm Satoru Suzuki. I create, I explore, and I dive deep into technology, projects, and digital spaces. I own BlackMargin and a few other digital ventures. This space is my personal digital identity.</p>
   </section>
 
   <section id="skills" class="reveal">
     <div class="section-title">Things I Own / Skills</div>
     <div class="grid">
-      <div class="panel"><h3>BlackMargin</h3><p style="font-size:0.9rem; margin-top:0.5rem; color:var(--muted)">Digital Venture</p></div>
-      <div class="panel"><h3>Development</h3><p style="font-size:0.9rem; margin-top:0.5rem; color:var(--muted)">Web & App Tech</p></div>
-      <div class="panel"><h3>Design</h3><p style="font-size:0.9rem; margin-top:0.5rem; color:var(--muted)">UI/UX & Branding</p></div>
-      <div class="panel"><h3>Strategy</h3><p style="font-size:0.9rem; margin-top:0.5rem; color:var(--muted)">Growth & Vision</p></div>
+      <div class="panel">
+        <i class="fa-solid fa-crown" style="color:var(--accent); font-size:1.5rem; margin-bottom:10px;"></i>
+        <h3>BlackMargin</h3>
+        <p style="font-size:0.9rem; margin-top:0.5rem; color:var(--muted)">Digital Venture</p>
+      </div>
+      <div class="panel">
+        <i class="fa-solid fa-code" style="color:var(--accent); font-size:1.5rem; margin-bottom:10px;"></i>
+        <h3>Development</h3>
+        <p style="font-size:0.9rem; margin-top:0.5rem; color:var(--muted)">Web & App Tech</p>
+      </div>
+      <div class="panel">
+        <i class="fa-solid fa-palette" style="color:var(--accent); font-size:1.5rem; margin-bottom:10px;"></i>
+        <h3>Design</h3>
+        <p style="font-size:0.9rem; margin-top:0.5rem; color:var(--muted)">UI/UX & Branding</p>
+      </div>
+      <div class="panel">
+        <i class="fa-solid fa-chess-knight" style="color:var(--accent); font-size:1.5rem; margin-bottom:10px;"></i>
+        <h3>Strategy</h3>
+        <p style="font-size:0.9rem; margin-top:0.5rem; color:var(--muted)">Growth & Vision</p>
+      </div>
     </div>
   </section>
 
   <section id="projects" class="reveal">
     <div class="section-title">Gallery / Projects</div>
     <div class="grid">
-      <div class="panel project-card"><img class="lightbox" src="pfp.jpg" alt="Project 1"></div>
-      <div class="panel project-card"><img class="lightbox" src="pfp.jpg" alt="Project 2"></div>
-      <div class="panel project-card"><img class="lightbox" src="pfp.jpg" alt="Project 3"></div>
-      <div class="panel project-card"><img class="lightbox" src="pfp.jpg" alt="Project 4"></div>
+      <div class="panel project-card">
+        <img class="lightbox" src="pfp.jpg" alt="Project 1" loading="lazy">
+        <div class="card-overlay">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <h3>Project One</h3>
+            <p>Web Development</p>
+        </div>
+      </div>
+      <div class="panel project-card">
+        <img class="lightbox" src="pfp.jpg" alt="Project 2" loading="lazy">
+        <div class="card-overlay">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <h3>Project Two</h3>
+            <p>UI Design System</p>
+        </div>
+      </div>
+      <div class="panel project-card">
+        <img class="lightbox" src="pfp.jpg" alt="Project 3" loading="lazy">
+        <div class="card-overlay">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <h3>Project Three</h3>
+            <p>App Prototype</p>
+        </div>
+      </div>
+      <div class="panel project-card">
+        <img class="lightbox" src="pfp.jpg" alt="Project 4" loading="lazy">
+        <div class="card-overlay">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <h3>Project Four</h3>
+            <p>Digital Branding</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -339,12 +468,19 @@ window.addEventListener('scroll', () => {
   scrollBar.style.width = (scrollTop / docHeight * 100) + '%';
 });
 
-// Lightbox functionality (Fixed)
+// Mobile Menu Toggle
+function toggleMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('active');
+}
+
+// Lightbox functionality
 const lbOverlay = document.getElementById('lightboxOverlay');
 const lbImage = lbOverlay.querySelector('img');
 
 document.querySelectorAll('.lightbox').forEach(img => {
-    img.addEventListener('click', function() {
+    img.addEventListener('click', function(e) {
+        // Stop bubbling if clicking inside a project card, but for pure image galleries this is fine
         lbImage.src = this.src;
         lbImage.alt = this.alt;
         lbOverlay.classList.add('show');
@@ -355,26 +491,22 @@ function closeLightbox() {
     lbOverlay.classList.remove('show');
 }
 
-// Reveal Animation functionality (Fixed)
+// Reveal Animation functionality
 const reveals = document.querySelectorAll('.reveal');
 
 function revealOnScroll() {
     const windowHeight = window.innerHeight;
-    const revealPoint = 150; // Offset from the bottom of the viewport
+    const revealPoint = 150; 
 
     for (let i = 0; i < reveals.length; i++) {
         const revealTop = reveals[i].getBoundingClientRect().top;
 
         if (revealTop < windowHeight - revealPoint) {
             reveals[i].classList.add('active');
-        } else {
-            // Optional: Remove 'active' class when scrolling back up
-            // reveals[i].classList.remove('active'); 
-        }
+        } 
     }
 }
 
-// Initial check and subsequent checks
 window.addEventListener('load', revealOnScroll);
 window.addEventListener('scroll', revealOnScroll);
 </script>
