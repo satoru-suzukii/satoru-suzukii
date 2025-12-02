@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="description" content="Portfolio of Satoru Suzuki - Digital Venture Owner, Developer, and Strategist.">
 <title>Satoru Suzuki | Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
@@ -35,13 +35,13 @@ html { scroll-behavior: smooth; }
   100% { background-position: 50% 0%; }
 }
 
-body { 
+body {
   background: var(--bg);
   background-image: radial-gradient(circle at 50% -20%, #2a0f25 0%, var(--bg) 60%);
   background-size: 100% 120%;
   animation: neonPulse 8s ease-in-out infinite;
-  color: var(--muted); 
-  font-family: var(--font-body); 
+  color: var(--muted);
+  font-family: var(--font-body);
   overflow-x: hidden;
 }
 
@@ -55,7 +55,7 @@ body {
   box-shadow: 0 0 10px var(--accent);
   width: 0%;
   z-index: 9999;
-  transition: width 0.1s ease-out;
+  transition: width 0.12s linear;
 }
 
 /* Navigation Bar */
@@ -70,7 +70,7 @@ body {
   border-bottom: 1px solid var(--border);
   z-index: 1000;
   display: flex;
-  justify-content: center; /* Centering the nav links */
+  justify-content: center;
   align-items: center;
 }
 
@@ -114,31 +114,39 @@ a { text-decoration: none; transition: 0.3s ease; }
 
 .container { max-width: var(--max); margin: auto; padding: 2rem; margin-top: 4rem; }
 
-/* Scroll Animation Classes */
+/* Scroll Animation Classes (UPGRADED SMOOTHNESS ENGINE) */
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+  transform: translateY(50px);
+  transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: opacity, transform;
 }
 .reveal.active {
   opacity: 1;
   transform: translateY(0);
 }
 
+/* stagger fallback for children where supported (non-critical) */
+.reveal[data-reveal-delay="0.1s"] { transition-delay: 0.1s; }
+.reveal[data-reveal-delay="0.2s"] { transition-delay: 0.2s; }
+.reveal[data-reveal-delay="0.3s"] { transition-delay: 0.3s; }
+.reveal[data-reveal-delay="0.4s"] { transition-delay: 0.4s; }
+
 /* Header */
-header { 
-  display: flex; 
-  flex-direction: column; 
-  align-items:center; 
-  justify-content:center; 
-  text-align:center; 
-  padding: 8rem 1rem 4rem; 
+header {
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding: 8rem 1rem 4rem;
 }
-header img { 
-  width:160px; 
-  height:160px; 
-  border-radius:50%; 
-  border:2px solid var(--accent); 
+header img {
+  width:160px;
+  height:160px;
+  border-radius:50%;
+  border:2px solid var(--accent);
   box-shadow: 0 0 40px var(--accent-glow);
   object-fit: cover;
   transition: transform 0.4s ease;
@@ -163,10 +171,10 @@ header img:hover { transform: scale(1.05) rotate(2deg); box-shadow: 0 0 60px var
   }
 }
 
-header h1 { 
-  font-family: var(--font-head); 
-  color: #fff; 
-  font-size:3.5rem; 
+header h1 {
+  font-family: var(--font-head);
+  color: #fff;
+  font-size:3.5rem;
   margin:1.5rem 0 0.5rem;
   letter-spacing: -2px;
   line-height: 1.1;
@@ -176,16 +184,14 @@ header p { font-size:1.2rem; color: var(--muted); max-width: 600px; margin-top: 
 
 /* Sections */
 section { margin: 6rem 0; scroll-margin-top: 100px; }
-.section-title { 
-  font-family: var(--font-head); 
-  color: #fff; 
-  font-size:2.2rem; 
-  margin-bottom:2.5rem; 
-  text-align:center; 
+.section-title {
+  font-family: var(--font-head);
+  color: #fff;
+  font-size:2.2rem;
+  margin-bottom:2.5rem;
+  text-align:center;
   position: relative;
   display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
 }
 .section-title::after {
   content:''; display:block; width: 60px; height: 3px; background: var(--accent);
@@ -193,50 +199,49 @@ section { margin: 6rem 0; scroll-margin-top: 100px; }
 }
 
 /* Panels */
-.panel { 
-  background: var(--panel); 
-  padding:1.5rem; 
-  border-radius: var(--radius); 
+.panel {
+  background: var(--panel);
+  padding:1.5rem;
+  border-radius: var(--radius);
   border: 1px solid var(--border);
-  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5); 
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.panel:hover { 
-  transform: translateY(-7px); 
+.panel:hover {
+  transform: translateY(-7px);
   border-color: var(--accent);
   box-shadow: 0 15px 40px var(--accent-glow);
 }
 
-/* About FIX: Centered text in 'About Me' section */
+/* About */
 #about { display:flex; flex-direction:column; align-items:center; gap:2rem; text-align:center; }
-#about img { 
-  width:100%; max-width:400px; 
-  border-radius: var(--radius); 
-  border:1px solid var(--border); 
+#about img {
+  width:100%; max-width:400px;
+  border-radius: var(--radius);
+  border:1px solid var(--border);
   box-shadow:0 0 30px rgba(0,0,0,0.5);
   cursor: pointer;
 }
-#about p { max-width:700px; line-height: 1.6; text-align: center; /* Ensure text inside p tag is centered */ }
+#about p { max-width:700px; line-height: 1.6; text-align: center; }
 
 /* Grid Systems */
-.grid { 
-  display:grid; 
-  gap:1.5rem; 
-  grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); 
+.grid {
+  display:grid;
+  gap:1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
 }
 
-/* Enhanced Project Cards with Overlay */
-.project-card {
-  padding: 0; 
-  overflow: hidden; 
+/* Project Cards */
+.project-card{
+  padding: 0;
+  overflow: hidden;
   position: relative;
-  height: 250px; 
-  group: hover;
+  height: 250px;
 }
 .project-card img {
   width: 100%;
   height: 100%;
-  object-fit: cover; 
+  object-fit: cover;
   transition: transform 0.6s ease;
   display: block;
 }
@@ -250,14 +255,14 @@ section { margin: 6rem 0; scroll-margin-top: 100px; }
   padding: 1.5rem;
   background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
   transition: bottom 0.4s ease-out;
-  pointer-events: none;
+  pointer-events: none; /* we only want hover to show overlay, avoid capturing pointer */
 }
 .project-card:hover .card-overlay { bottom: 0; }
 .card-overlay h3 { color: #fff; font-family: var(--font-head); margin-bottom: 0.3rem; }
 .card-overlay p { font-size: 0.85rem; color: var(--accent); font-weight: 600; }
 .card-overlay i {
   position: absolute;
-  top: -30px; /* Moves icon up */
+  top: -30px;
   right: 20px;
   color: #fff;
   font-size: 1.2rem;
@@ -265,7 +270,6 @@ section { margin: 6rem 0; scroll-margin-top: 100px; }
   transition: 0.4s 0.1s;
 }
 .project-card:hover .card-overlay i { opacity: 1; transform: translateY(-10px); }
-
 
 /* Social Buttons */
 .social-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
@@ -304,7 +308,7 @@ footer { text-align:center; color: var(--muted); padding:3rem 0; border-top:1px 
 @media (max-width: 768px) {
   .navbar { justify-content: space-between; padding: 1rem 1.5rem; }
   .hamburger { display: block; z-index: 1001; }
-  
+
   .nav-links {
     position: fixed;
     top: 0;
@@ -319,10 +323,10 @@ footer { text-align:center; color: var(--muted); padding:3rem 0; border-top:1px 
     box-shadow: -10px 0 30px rgba(0,0,0,0.8);
     transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  
+
   .nav-links.active { right: 0; }
   .nav-links a { font-size: 1.2rem; }
-  
+
   header h1 { font-size: 2.5rem; }
   header p { padding: 0 1rem; }
   .section-title { font-size: 1.8rem; }
@@ -378,26 +382,25 @@ footer { text-align:center; color: var(--muted); padding:3rem 0; border-top:1px 
 </head>
 <body>
 
-<div id="scrollProgress"></div>
+<div id="scrollProgress" aria-hidden="true"></div>
 
-<audio id="bgMusic" loop>
-  <source src="music.m4a" type="audio/mp4"> 
-  <source src="music.m4a" type="audio/aac">
+<audio id="bgMusic" loop preload="metadata">
+  <source src="music.m4a" type="audio/mp4">
+  <source src="music.ogg" type="audio/ogg">
+  Your browser does not support the audio element.
 </audio>
 
-
-
 <div class="music-controls">
-  <button id="musicBtn" onclick="toggleMusic()" title="Play/Pause Music">
-    <i class="fa-solid fa-music" id="musicIcon"></i>
+  <button id="musicBtn" aria-label="Play or pause background music" title="Play/Pause Music">
+    <i class="fa-solid fa-music" id="musicIcon" aria-hidden="true"></i>
   </button>
 </div>
 
-<nav class="navbar">
-  <div class="hamburger" onclick="toggleMenu()">
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <div class="hamburger" onclick="toggleMenu()" aria-hidden="false" title="Toggle menu">
     <i class="fa-solid fa-bars"></i>
   </div>
-  <div class="nav-links">
+  <div class="nav-links" id="navLinks">
     <a href="#about" onclick="toggleMenu()">About</a>
     <a href="#skills" onclick="toggleMenu()">Skills</a>
     <a href="#projects" onclick="toggleMenu()">Gallery</a>
@@ -406,14 +409,14 @@ footer { text-align:center; color: var(--muted); padding:3rem 0; border-top:1px 
   </div>
 </nav>
 
-<header class="reveal">
+<header class="reveal" data-reveal-delay="0.0s">
   <img src="pfp.jpg" alt="Profile Picture" loading="lazy">
   <h1>Hi, it's Satoru Suzuki</h1>
   <p>Welcome to my cyberpunk neon corner of the web. Discover my work, socials, and more.</p>
 </header>
 
 <div class="container">
-  <section id="about" class="reveal">
+  <section id="about" class="reveal" data-reveal-delay="0.1s">
     <div class="section-title">About Me</div>
     <div class="panel" style="padding:0; overflow:hidden; border:none; box-shadow:none;">
       <img class="lightbox" src="fullme.jpg" alt="Full Me" loading="lazy">
@@ -421,7 +424,7 @@ footer { text-align:center; color: var(--muted); padding:3rem 0; border-top:1px 
     <p style="margin-top:1.5rem; text-align: center;">I'm Satoru Suzuki. I create, I explore, and I dive deep into technology, projects, and digital spaces. I own BlackMargin and a few other digital ventures. This space is my personal digital identity.</p>
   </section>
 
-  <section id="skills" class="reveal">
+  <section id="skills" class="reveal" data-reveal-delay="0.15s">
     <div class="section-title">Things I Own / Skills</div>
     <div class="grid">
       <div class="panel">
@@ -447,7 +450,7 @@ footer { text-align:center; color: var(--muted); padding:3rem 0; border-top:1px 
     </div>
   </section>
 
-  <section id="projects" class="reveal">
+  <section id="projects" class="reveal" data-reveal-delay="0.2s">
     <div class="section-title">Gallery / Projects</div>
     <div class="grid">
       <div class="panel project-card">
@@ -485,7 +488,7 @@ footer { text-align:center; color: var(--muted); padding:3rem 0; border-top:1px 
     </div>
   </section>
 
-  <section id="socials" class="reveal">
+  <section id="socials" class="reveal" data-reveal-delay="0.25s">
     <div class="section-title">Social Media</div>
     <div class="social-grid">
       <a href="https://x.com/satoru_suzukii" target="_blank" rel="noopener noreferrer" class="social-btn x"><i class="fa-brands fa-x-twitter"></i> X (Twitter)</a>
@@ -496,7 +499,7 @@ footer { text-align:center; color: var(--muted); padding:3rem 0; border-top:1px 
     </div>
   </section>
 
-  <section id="contact" class="reveal">
+  <section id="contact" class="reveal" data-reveal-delay="0.3s">
     <div class="section-title">Contact Me</div>
     <form action="https://formsubmit.co/devilking7371@gmail.com" method="POST">
       <input type="hidden" name="_captcha" value="false">
@@ -510,102 +513,172 @@ footer { text-align:center; color: var(--muted); padding:3rem 0; border-top:1px 
   <footer>© 2025 Satoru Suzuki. All Rights Reserved.</footer>
 </div>
 
-<div id="lightboxOverlay" onclick="closeLightbox()">
-  <i class="fa-solid fa-xmark"></i>
+<div id="lightboxOverlay" onclick="closeLightbox()" role="dialog" aria-modal="true" aria-hidden="true">
+  <i class="fa-solid fa-xmark" onclick="closeLightbox()" role="button" aria-label="Close"></i>
   <img src="" alt="Lightbox Image">
 </div>
 
 <script>
-// Scroll progress
+/* ---------- Scroll progress ---------- */
 const scrollBar = document.getElementById('scrollProgress');
-window.addEventListener('scroll', () => {
-  const scrollTop = window.scrollY;
+function updateScrollProgress() {
+  const scrollTop = window.scrollY || window.pageYOffset;
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  scrollBar.style.width = (scrollTop / docHeight * 100) + '%';
-});
+  const pct = (docHeight > 0) ? (scrollTop / docHeight * 100) : 0;
+  scrollBar.style.width = Math.min(100, Math.max(0, pct)) + '%';
+}
+window.addEventListener('scroll', updateScrollProgress, { passive: true });
+window.addEventListener('resize', updateScrollProgress);
+updateScrollProgress();
 
-// Mobile Menu Toggle
+/* ---------- Mobile Menu Toggle ---------- */
 function toggleMenu() {
     const navLinks = document.querySelector('.nav-links');
+    if (!navLinks) return;
     navLinks.classList.toggle('active');
 }
 
-// Lightbox functionality
+/* ---------- Lightbox functionality ---------- */
 const lbOverlay = document.getElementById('lightboxOverlay');
 const lbImage = lbOverlay.querySelector('img');
+const lbCloseIcon = lbOverlay.querySelector('.fa-xmark');
 
+function openLightbox(src, alt) {
+  lbImage.src = src;
+  lbImage.alt = alt || '';
+  lbOverlay.classList.add('show');
+  lbOverlay.setAttribute('aria-hidden', 'false');
+}
+function closeLightbox() {
+  lbOverlay.classList.remove('show');
+  lbOverlay.setAttribute('aria-hidden', 'true');
+  // clear src after short delay to free memory
+  setTimeout(() => { lbImage.src = ''; lbImage.alt = ''; }, 300);
+}
+
+// Attach lightbox click listeners to all .lightbox images
 document.querySelectorAll('.lightbox').forEach(img => {
     img.addEventListener('click', function(e) {
-        lbImage.src = this.src;
-        lbImage.alt = this.alt;
-        lbOverlay.classList.add('show');
+        // Stop the header image from triggering the nav or other handlers.
+        e.stopPropagation();
+        openLightbox(this.src, this.alt);
     });
 });
 
-function closeLightbox() {
-    lbOverlay.classList.remove('show');
+// Prevent clicking the image inside overlay from closing it
+lbImage.addEventListener('click', (e) => {
+  e.stopPropagation();
+});
+
+// close icon click
+if (lbCloseIcon) {
+  lbCloseIcon.addEventListener('click', (e) => {
+    e.stopPropagation();
+    closeLightbox();
+  });
 }
 
-// Reveal Animation functionality
-const reveals = document.querySelectorAll('.reveal');
+/* ---------- Reveal Animation (IntersectionObserver) ---------- */
+const revealElements = document.querySelectorAll('.reveal');
 
-function revealOnScroll() {
+if ('IntersectionObserver' in window) {
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px 0px -10% 0px',
+    threshold: 0.08
+  };
+
+  const revealObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        // optional: respect custom delay attribute
+        obs.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  revealElements.forEach((el, idx) => {
+    // allow markup to request a small stagger via data attribute
+    // e.g. data-reveal-delay="0.15s"
+    const delay = el.getAttribute('data-reveal-delay');
+    if (delay) el.style.transitionDelay = delay;
+    revealObserver.observe(el);
+  });
+} else {
+  // fallback: simple on-scroll check
+  const fallbackReveal = () => {
     const windowHeight = window.innerHeight;
-    const revealPoint = 150; 
-
-    for (let i = 0; i < reveals.length; i++) {
-        const revealTop = reveals[i].getBoundingClientRect().top;
-
-        if (revealTop < windowHeight - revealPoint) {
-            reveals[i].classList.add('active');
-        } 
-    }
+    const revealPoint = 150;
+    revealElements.forEach(el => {
+      const top = el.getBoundingClientRect().top;
+      if (top < windowHeight - revealPoint) {
+        el.classList.add('active');
+      }
+    });
+  };
+  window.addEventListener('scroll', fallbackReveal, { passive: true });
+  window.addEventListener('load', fallbackReveal);
 }
 
-window.addEventListener('load', revealOnScroll);
-window.addEventListener('scroll', revealOnScroll);
-
-/* --- MUSIC PLAYER LOGIC --- */
+/* ---------- MUSIC PLAYER LOGIC ---------- */
 const music = document.getElementById('bgMusic');
 const musicBtn = document.getElementById('musicBtn');
 const musicIcon = document.getElementById('musicIcon');
 let isPlaying = false;
 
-function toggleMusic() {
-  if (isPlaying) {
-    music.pause();
-    musicIcon.classList.remove('fa-pause');
-    musicIcon.classList.add('fa-music');
-    musicBtn.classList.remove('playing');
-  } else {
-    music.play();
+function updateMusicUI(playing) {
+  if (playing) {
     musicIcon.classList.remove('fa-music');
     musicIcon.classList.add('fa-pause');
     musicBtn.classList.add('playing');
+  } else {
+    musicIcon.classList.remove('fa-pause');
+    musicIcon.classList.add('fa-music');
+    musicBtn.classList.remove('playing');
   }
-  isPlaying = !isPlaying;
+  isPlaying = !!playing;
 }
 
-// Try to auto-play on load (Browsers may block this, so we handle it gracefully)
-window.addEventListener('load', () => {
-  music.volume = 0.4; // 40% volume so it's not ear-blasting
-  
-  let playPromise = music.play();
+function toggleMusic() {
+  if (!music) return;
+  if (isPlaying) {
+    music.pause();
+    updateMusicUI(false);
+  } else {
+    const playPromise = music.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => updateMusicUI(true)).catch(() => {
+        // autoplay blocked; keep UI paused
+        updateMusicUI(false);
+        console.log("Autoplay blocked; user interaction required to start music.");
+      });
+    } else {
+      // older browsers
+      music.play();
+      updateMusicUI(true);
+    }
+  }
+}
 
-  if (playPromise !== undefined) {
-    playPromise.then(_ => {
-      // Auto-play started successfully
-      isPlaying = true;
-      musicIcon.classList.remove('fa-music');
-      musicIcon.classList.add('fa-pause');
-      musicBtn.classList.add('playing');
-    })
-    .catch(error => {
-      // Auto-play was blocked. UI remains in "Paused" state.
-      console.log("Autoplay prevented by browser. User must click play.");
-      music.pause();
-      isPlaying = false;
-    });
+musicBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  toggleMusic();
+});
+
+// Try to pre-set volume and attempt a polite autoplay (graceful failure)
+window.addEventListener('load', () => {
+  if (music) {
+    try { music.volume = 0.4; } catch (e) {}
+    const playPromise = music.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        updateMusicUI(true);
+      }).catch(() => {
+        // blocked, do nothing
+        updateMusicUI(false);
+      });
+    }
   }
 });
 </script>
